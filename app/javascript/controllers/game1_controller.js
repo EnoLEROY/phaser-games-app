@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
-import * as Phaser from "../phaser"
-// import {Phaser} from "phaser"
+import * as Phaser from "phaser"
+import { loadAnimations } from "load_animations"
 
 // Connects to data-controller="game1"
 export default class extends Controller {
   static values = {
+    playerImageUrl: String,
 
   }
 
@@ -12,22 +13,35 @@ export default class extends Controller {
   connect() {
     console.log('je suis conecter')
 
+    // importation des assets
+    const playerImageUrl = this.playerImageUrlValue
+
 
     this.gameScene = new Phaser.Scene('Game');
 
+
     this.gameScene.preload = () => {
-      console.log('preload ok')
-    }
+      // import des images
+      this.gameScene.load.image('player', playerImageUrl)
+
+      // import des spritsheets
+      this.gameScene.load.spritesheet('player_all', playerImageUrl, {frameWidth: 48, frameHeight: 48})
+
+      // load des audios
+      // this.gameScene.load.audio("death_sound", deathSound)
+
+
+    } // preload end
 
     this.gameScene.create = () => {
-      console.log('create ok')
+      loadAnimations(this.gameScene)
 
-    }
+    } // create end
 
     this.gameScene.update = () => {
-      
 
-    }
+
+    } // update end
 
     let config = {
       type: Phaser.AUTO,
