@@ -1,6 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 import * as Phaser from "phaser"
 import { loadAnimations } from "load_animations"
+import { imputs } from "imputs"
+import { Player } from "player"
 
 // Connects to data-controller="game1"
 export default class extends Controller {
@@ -34,12 +36,17 @@ export default class extends Controller {
     } // preload end
 
     this.gameScene.create = () => {
+      console.log(this.gameScene)
+
+      // loads externes
       loadAnimations(this.gameScene)
+      imputs(this.gameScene)
+      this.player = new Player({x: 10, y: 10}, this.gameScene)
 
     } // create end
 
     this.gameScene.update = () => {
-
+      this.player.update()
 
     } // update end
 

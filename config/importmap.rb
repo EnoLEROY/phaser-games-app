@@ -8,3 +8,5 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "phaser", preload: true
 pin 'load_animations', preload: true
+pin 'player', preload: true
+pin 'imputs', preload: true
