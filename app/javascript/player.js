@@ -17,6 +17,18 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     if (this.gameScene.playerMove.player_up.isDown) {
       this.setVelocityY(-speed);
+    } else if (this.gameScene.playerMove.player_down.isDown) {
+      this.setVelocityY(speed)
+    } else {
+      this.setVelocityY(0)
+    }
+
+    if (this.gameScene.playerMove.player_left.isDown) {
+      this.setVelocityX(-speed)
+    } else if (this.gameScene.playerMove.player_right.isDown) {
+      this.setVelocityX(speed)
+    } else {
+      this.setVelocityX(0)
     }
   }
 }
